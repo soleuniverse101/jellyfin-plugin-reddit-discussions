@@ -47,7 +47,7 @@ public class StartupService(ILogger<StartupService> logger) : IScheduledTask
                     {
                         { "id", "eadc071b-afde-4d86-be03-c008886a5c75" },
                         { "name", "Reddit Discussions Button Injection Script" },
-                        { "script", InjectionScript.Content },
+                        { "script", EmbeddedResources.InjectionScript.Content },
                         { "enabled", true },
                         { "requiresAuthentication", true },
                         { "pluginId", Plugin.Instance.Id.ToString() },
