@@ -15,10 +15,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Web/inject.js" />
-  </ItemGroup>
-
   <!-- Compiles all .ts files in Web/ and includes them as EmbeddedResources with their original path -->
   <!-- IMPORTANT : Would need a rework to support recursive inclusion of directories with accurate paths -->
   <Target Name="BuildTypeScript" BeforeTargets="BeforeBuild">
