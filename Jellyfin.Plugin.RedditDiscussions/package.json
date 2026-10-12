@@ -1,0 +1,26 @@
+{
+  "name": "jellyfin-plugin-reddit-discussions",
+  "version": "1.0.0",
+  "description": "A Jellyfin plugin that adds a button to episodes and shows to quickly open their corresponding Reddit Discussion post.",
+  "private": true,
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "jellyfin"
+  ],
+  "author": "soleuniverse <dev@soleuniverse.me> (https://soleuniverse.me/)",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.11.2",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.11.2",
+  "type": "commonjs",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

@@ -18,4 +18,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Web/inject.js" />
   </ItemGroup>
+
+  <!-- Compiles all .ts files in Web/ and includes them as EmbeddedResources with their original path -->
+  <!-- IMPORTANT : Would need a rework to support recursive inclusion of directories with accurate paths -->
+  <Target Name="BuildTypeScript" BeforeTargets="BeforeBuild">
+    <Exec Command="pnpm build" WorkingDirectory="$(MSBuildProjectDirectory)" />
+    <ItemGroup>
+      <TsBuildOutput Include="Web/dist/**/*.js" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="@(TsBuildOutput)">
+        <LogicalName>$(RootNamespace).Web.%(TsBuildOutput.RecursiveDir)%(TsBuildOutput.Filename)%(TsBuildOutput.Extension)</LogicalName>
+      </EmbeddedResource>
+    </ItemGroup>
+  </Target>
 </Project>
