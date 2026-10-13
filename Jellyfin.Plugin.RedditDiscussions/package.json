@@ -4,7 +4,8 @@
   "description": "A Jellyfin plugin that adds a button to episodes and shows to quickly open their corresponding Reddit Discussion post.",
   "private": true,
   "scripts": {
-    "build": "tsc"
+    "build-dev": "tsc && esbuild Web/inject.ts --bundle --outfile=Web/dist/inject.js --sourcemap",
+    "build": "tsc && esbuild Web/inject.ts --bundle --outfile=Web/dist/inject.js --minify"
   },
   "keywords": [
     "jellyfin"
@@ -21,6 +22,7 @@
   "packageManager": "pnpm@12.11.2",
   "type": "commonjs",
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "typescript": "^6.0.3"
   }
 }

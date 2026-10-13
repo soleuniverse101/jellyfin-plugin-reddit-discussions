@@ -18,7 +18,17 @@
   <!-- Compiles all .ts files in Web/ and includes them as EmbeddedResources with their original path -->
   <!-- IMPORTANT : Would need a rework to support recursive inclusion of directories with accurate paths -->
   <Target Name="BuildTypeScript" BeforeTargets="BeforeBuild">
-    <Exec Command="pnpm build" WorkingDirectory="$(MSBuildProjectDirectory)" />
+    <Exec
+      Condition="'$(Configuration)'=='Debug'"
+      Command="pnpm build-dev"
+      WorkingDirectory="$(MSBuildProjectDirectory)"
+    />
+    <Exec
+      Condition="'$(Configuration)'=='Release'"
+      Command="pnpm build"
+      WorkingDirectory="$(MSBuildProjectDirectory)"
+    />
+
     <ItemGroup>
       <TsBuildOutput Include="Web/dist/**/*.js" />
     </ItemGroup>
