@@ -1,20 +1,14 @@
 ﻿using System.Runtime.Loader;
 using Jellyfin.Plugin.RedditDiscussions.Resources;
-using MediaBrowser.Model.Tasks;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace Jellyfin.Plugin.RedditDiscussions.Services;
 
-public class StartupService(ILogger<StartupService> logger) : IScheduledTask
+public class StartupService(ILogger<StartupService> logger) : IHostedService
 {
-    public string Name => "Reddit Discussions Startup";
-    public string Key => "Jellyfin.Plugin.RedditDiscussions.Startup";
-    public string Description =>
-        "Startup Service for Reddit Discussions. Do not configure manually.";
-    public string Category => "Startup Services";
-
-    public Task ExecuteAsync(IProgress<double> progress, CancellationToken cancellationToken)
+    public Task StartAsync(CancellationToken cancellationToken)
     {
         var jsInjectorAssembly = AssemblyLoadContext
             .All.SelectMany(x => x.Assemblies)
@@ -65,8 +59,5 @@ public class StartupService(ILogger<StartupService> logger) : IScheduledTask
         return Task.CompletedTask;
     }
 
-    public IEnumerable<TaskTriggerInfo> GetDefaultTriggers()
-    {
-        yield return new TaskTriggerInfo { Type = TaskTriggerInfoType.StartupTrigger };
-    }
+    public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 }

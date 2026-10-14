@@ -12,6 +12,6 @@ public class PluginServiceRegistrator : IPluginServiceRegistrator
         IServerApplicationHost applicationHost
     )
     {
-        serviceCollection.AddSingleton<StartupService>();
+        serviceCollection.AddHostedService<StartupService>();
     }
 }
