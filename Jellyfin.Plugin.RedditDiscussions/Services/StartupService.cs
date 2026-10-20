@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Loader;
-using Jellyfin.Plugin.RedditDiscussions.Resources;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -41,7 +40,7 @@ public class StartupService(ILogger<StartupService> logger) : IHostedService
                     {
                         { "id", "eadc071b-afde-4d86-be03-c008886a5c75" },
                         { "name", "Reddit Discussions Button Injection Script" },
-                        { "script", EmbeddedResources.InjectionScript.Content },
+                        { "src", "/RedditDiscussions/inject.js" },
                         { "enabled", true },
                         { "requiresAuthentication", true },
                         { "pluginId", Plugin.Instance.Id.ToString() },
